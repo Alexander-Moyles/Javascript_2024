@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">	
+        <title>Grade Converter</title>
+    </head>
+    <body>
+        <main>
+            <h1>Show letter grade</h1>
+            <script>
+                "use strict";
+
+                let entry;
+                let grade;
+
+                do {
+                    entry = parseInt(prompt("Enter number grade from 0 through 100\nOr enter 999 to end entries", 999));
+                    if (entry > 0 && entry <= 100 && !isNaN(entry)) {
+                        if (entry >= 88) {
+                            grade = "A";
+                        }
+                        else if (entry <= 87 && entry >= 80) {
+                            grade = "B";
+                        }
+                        else if (entry <= 79 && entry >= 68) {
+                            grade = "C";
+                        }
+                        else if (entry <= 67 && entry >= 61) {
+                            grade = "D";
+                        }
+                        else if (entry <= 60) {
+                            grade = "F";
+                        }
+                        
+                        document.write(`<p>Grade: ${entry} = ${grade}</p>`);
+                    }
+                } while (entry != 999);
+            </script>
+        </main>
+    </body>
+</html>

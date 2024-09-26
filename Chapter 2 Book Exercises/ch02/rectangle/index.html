@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rectangle Calculator</title>
+    <link rel="stylesheet" href="rectangle.css">
+</head>
+<body>
+    <main>
+        <h1>The Rectangle Calculator</h1>
+        <script>
+            "use strict";
+            
+            // get miles driven from user
+            const length = parseInt(prompt("Enter length of rectangle"));
+
+            // get gallons used from user
+            const width = parseInt(prompt("Enter width of rectanlge"));
+
+            // calculate mpg
+            const area = parseFloat(length * width);
+            const perimeter = parseFloat(length * 2 + width * 2)
+
+            // display results
+            const html = `<p><label>Length: </label>${length}</p>
+                <p><label>Width: </label>${width}</p>
+                <p><label>Area: </label>${area.toFixed(2)}</p>
+                <p><label>Perimeter: </label>${perimeter.toFixed(2)}</p>`;
+            document.write(html);
+        </script>    
+    </main>
+</body>
+</html>
