@@ -6,10 +6,10 @@ const processEntries = () => {
     const subtotal = parseFloat($("#subtotal").value);
     const taxRate = parseFloat($("#tax_rate").value);
 
-    if (isNaN(subtotal) || subtotal < 0 || subtotal > 10000) {
+    if (isNaN(subtotal) || subtotal <= 0 || subtotal >= 10000) {
         alert(`Subtotal must be > 0 and < 10000`);
     }
-    else if (isNaN(taxRate) || taxRate < 0 || taxRate > 12) {
+    else if (isNaN(taxRate) || taxRate <= 0 || taxRate >= 12) {
         alert(`Tax Rate must be > 0 and < 12`);
     }
     else {
