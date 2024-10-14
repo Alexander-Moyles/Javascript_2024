@@ -16,6 +16,11 @@ const processEntry = () => {
 };
 
 const calculateTax = (income) => {
+	// Probably redundant as it already is one,
+	// but the assignment said that calculateTax()
+	// should convert user input to an integer.
+	income = parseInt(income);
+
 	let taxAmount;
 	if (income <= 9875) {
 		taxAmount = (income * 0.10);

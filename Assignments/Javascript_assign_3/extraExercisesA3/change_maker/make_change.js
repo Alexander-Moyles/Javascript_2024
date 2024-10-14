@@ -1,11 +1,11 @@
-"use strict"; //wasn't here by default -?-
+"use strict";
 
 const $ = selector => document.querySelector(selector);
 
 const processEntry = () => {
     let entry = parseInt($("#cents").value);
-    if (isNaN(entry) || entry <= 0 || entry > 99) {
-        alert(`Cents must be > 0 and < 99`);
+    if (isNaN(entry) || entry < 0 || entry > 99) {
+        alert(`Cents must be >= 0 and <= 99`);
     }
     else {
         makeChange(entry);
