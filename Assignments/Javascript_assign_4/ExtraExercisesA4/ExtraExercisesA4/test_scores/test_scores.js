@@ -23,7 +23,10 @@ const displayResults = () => {
 		count++;
 	}
 
-	$("#results").textContent = `<h2>Results</h2>\nAverage Score = ${average}\nHigh score = ${topStudent} with a score of ${highestScore}`;
+	const div = $("#results")
+	div.appendChild("h2");
+	$("#results").firstChild.textContent = "Results";
+	"Average Score = ${average}\nHigh score = ${topStudent} with a score of ${highestScore}`";
 };
 
 const addScore = () => {
