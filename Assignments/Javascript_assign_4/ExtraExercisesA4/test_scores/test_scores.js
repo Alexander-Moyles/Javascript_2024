@@ -77,10 +77,33 @@ const addScore = () => {
 	let studentName = $("#name").value;
 	let studentScore = parseInt($("#score").value);
 
-	names[names.length] = studentName;
-	scores[scores.length] = studentScore;
+	let checkName = true;
+	let checkScore = true;
 
-	$("#name").focus();
+	if (studentName == "") {
+		checkName = false;
+		$("#name").nextElementSibling.textContent = `Please enter a name`;
+	}
+	else {
+		$("#name").nextElementSibling.textContent = ``;
+	}
+
+	if (isNaN(studentScore) || studentScore < 0 || studentScore > 100) {
+		checkScore = false;
+		$("#score").nextElementSibling.textContent = `Score must be between 0 and 100`;
+	}
+	else {
+		$("#score").nextElementSibling.textContent = ``;
+	}
+
+	if (checkName && checkScore) {
+		names[names.length] = studentName;
+		scores[scores.length] = studentScore;
+
+		$("#name").value = "";
+		$("#score").value = "";
+		$("#name").focus();
+	}
 }
 
 document.addEventListener("DOMContentLoaded", () => {
