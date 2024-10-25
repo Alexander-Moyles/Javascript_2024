@@ -28,7 +28,7 @@ const displayResults = () => {
 	h2.appendChild(resultsText);
 
 	const pAverage = document.createElement("p");
-	const averageScoreText = document.createTextNode(`Average Score = ${average}`);
+	const averageScoreText = document.createTextNode(`Average Score = ${average.toFixed(0)}`);
 	pAverage.appendChild(averageScoreText);
 	
 	const pHighScore = document.createElement("p");
@@ -46,14 +46,45 @@ const displayResults = () => {
 };
 
 const displayScores = () => {
-	console.log("displayScore")
+	const h2 = document.createElement("h2");
+	const scoresText = document.createTextNode(`Scores`);
+	h2.appendChild(scoresText);
+
+	const divElement = document.createElement("div");
+	divElement.setAttribute("id", "scores");
+	$("#scores").parentNode.replaceChild(divElement, $("#scores"));
+	$("#scores").appendChild(h2);
+
+	for (let i = 0; i < names.length; i++) {
+		let studentName = names[i];
+		let studentScore = scores[i];
+
+		const nameLabel = document.createElement("label");
+		nameLabel.appendChild(document.createTextNode(`${studentName}`))
+
+		const scoreLabel = document.createElement("label");
+		scoreLabel.appendChild(document.createTextNode(`${studentScore}`))
+
+		const br = document.createElement("br")
+
+		h2.parentNode.appendChild(nameLabel);
+		h2.parentNode.appendChild(scoreLabel);
+		h2.parentNode.appendChild(br);
+	}
 }
 
 const addScore = () => {
-	console.log("addScore")
+	let studentName = $("#name").value;
+	let studentScore = parseInt($("#score").value);
+
+	names[names.length] = studentName;
+	scores[scores.length] = studentScore;
+
+	$("#name").focus();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+	$("#name").focus();
 	$("#add").addEventListener("click", addScore);
 	$("#display_results").addEventListener("click", displayResults);
 	$("#display_scores").addEventListener("click", displayScores);
