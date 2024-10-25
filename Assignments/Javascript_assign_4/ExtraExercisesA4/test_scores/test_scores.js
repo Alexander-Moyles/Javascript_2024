@@ -35,37 +35,22 @@ const displayResults = () => {
 	const highScoreText = document.createTextNode(`High score = ${topStudent} with a score of ${highestScore}`);
 	pHighScore.appendChild(highScoreText);
 
-	const oldH2 = $("#results").querySelector("h2");
-	if (oldH2 != null) {
-		$("#results").replaceChild(h2, oldH2);
-
-		const oldP1 = $("#results").querySelector("p");
-		$("#results").removeChild(oldP1);
-
-		const oldP2 = $("#results").querySelector("p");
-		$("#results").removeChild(oldP2);
-	}
-	else {
-		$("#results").appendChild(h2);
-		h2.parentNode.appendChild(pAverage);
-		$("#results").appendChild(pHighScore);
-	}
+	const divElement = document.createElement("div");
+	divElement.setAttribute("id", "results");
+	$("#results").parentNode.replaceChild(divElement, $("#results"));
+	$("#results").appendChild(h2);
 	
 	// Different ways to append to #results:
-
-	// Append average
 	h2.parentNode.appendChild(pAverage);
-
-	// Append highest score
 	$("#results").appendChild(pHighScore);
 };
 
-const addScore = () => {
-	console.log("addScore")
-}
-
 const displayScores = () => {
 	console.log("displayScore")
+}
+
+const addScore = () => {
+	console.log("addScore")
 }
 
 document.addEventListener("DOMContentLoaded", () => {
