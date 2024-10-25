@@ -22,17 +22,42 @@ const displayResults = () => {
 		}
 		count++;
 	}
+
 	const h2 = document.createElement("h2");
-	const p = document.createElement("p");
+	const resultsText = document.createTextNode(`Results`);
+	h2.appendChild(resultsText);
 
-	$("#results").appendChild(h2);	
-	$("#results").firstChild.textContent = `Results`
+	const pAverage = document.createElement("p");
+	const averageScoreText = document.createTextNode(`Average Score = ${average}`);
+	pAverage.appendChild(averageScoreText);
+	
+	const pHighScore = document.createElement("p");
+	const highScoreText = document.createTextNode(`High score = ${topStudent} with a score of ${highestScore}`);
+	pHighScore.appendChild(highScoreText);
 
-	$("#results").appendChild(p);
-	$("#results").firstChild.nextElementSibling.textContent = `Average Score = ${average}`
+	const oldH2 = $("#results").querySelector("h2");
+	if (oldH2 != null) {
+		$("#results").replaceChild(h2, oldH2);
 
-	//$("#results").appendChild(p);
-	//$("#results").firstChild.nextElementSibling.nextElementSibling.textContent = `High score = ${topStudent} with a score of ${highestScore}`;
+		const oldP1 = $("#results").querySelector("p");
+		$("#results").removeChild(oldP1);
+
+		const oldP2 = $("#results").querySelector("p");
+		$("#results").removeChild(oldP2);
+	}
+	else {
+		$("#results").appendChild(h2);
+		h2.parentNode.appendChild(pAverage);
+		$("#results").appendChild(pHighScore);
+	}
+	
+	// Different ways to append to #results:
+
+	// Append average
+	h2.parentNode.appendChild(pAverage);
+
+	// Append highest score
+	$("#results").appendChild(pHighScore);
 };
 
 const addScore = () => {
@@ -44,7 +69,6 @@ const displayScores = () => {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-	// add event handlers
 	$("#add").addEventListener("click", addScore);
 	$("#display_results").addEventListener("click", displayResults);
 	$("#display_scores").addEventListener("click", displayScores);
