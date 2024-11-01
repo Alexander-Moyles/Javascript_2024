@@ -34,9 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // attach start and pause event handlers
     $("#start").addEventListener("click", () => {
-
+        timer = setInterval(runSlideShow, 1000)
+        $("#pause").removeAttribute("disabled")
+        $("#start").setAttribute("disabled", "")
     });
     $("#pause").addEventListener("click", () => {
-
+        clearInterval(timer);
+        $("#start").removeAttribute("disabled")
+        $("#pause").setAttribute("disabled", "")
     });
 });
