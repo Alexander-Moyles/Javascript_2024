@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const newImage = new Image();
         newImage.src = newURL;
 
-        const setNew = () => {image.src = newImage.src; console.log("new")};
-        const setOld = () => {image.src = oldURL; console.log("old")};
+        const setNew = () => {image.src = newImage.src;};
+        const setOld = () => {image.src = oldURL;};
         
         // set up event handlers for hovering an image
         image.addEventListener("mouseover", () => {
