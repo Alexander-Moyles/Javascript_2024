@@ -11,13 +11,21 @@ document.addEventListener("DOMContentLoaded", () => {
         // preload rollover image
         const newImage = new Image();
         newImage.src = newURL;
+
+        const setNew = () => {image.src = newImage.src; console.log("new")};
+        const setOld = () => {image.src = oldURL; console.log("old")};
         
         // set up event handlers for hovering an image
         image.addEventListener("mouseover", () => {
-            image.src = newImage.src;
+            setNew();
         });
         image.addEventListener("mouseout", () => {
-            image.src = oldURL;
+            setOld();
         });
+
+        // set to rollover images 1 second after page loads
+        setTimeout(setNew, 1000);
+        // set to original images 2 seconds after page loads
+        setTimeout(setOld, 2000);
     }
 });
