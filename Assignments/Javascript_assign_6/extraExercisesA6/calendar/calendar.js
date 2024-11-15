@@ -1,6 +1,6 @@
 "use strict";
 
-const $ = (selector) => {document.querySelector(selector)};
+const $ = (selector) => document.querySelector(selector);
 
 const getMonthText = currentMonth => {
 	if (currentMonth === 0) { return "January"; }
