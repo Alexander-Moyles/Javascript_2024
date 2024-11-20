@@ -17,15 +17,15 @@ const getMonthText = currentMonth => {
 	else if (currentMonth === 11) { return "December"; }
 };
 
-const getLastDayofMonth = currentMonth => {
-	if (currentMonth === 0 || currentMonth === 2 || currentMonth === 4 || currentMonth === 6 || currentMonth === 7 || currentMonth === 9 || currentMonth === 11) {
+const getLastDayofMonth = currentDate => {
+	if (currentDate.getMonth() === 0 || currentDate.getMonth() === 2 || currentDate.getMonth() === 4 || currentDate.getMonth() === 6 || currentDate.getMonth() === 7 || currentDate.getMonth() === 9 || currentDate.getMonth() === 11) {
 		return 31;
 	}
-	else if (currentMonth === 3 || currentMonth === 5 || currentMonth === 8 || currentMonth === 10) {
+	else if (currentDate.getMonth() === 3 || currentDate.getMonth() === 5 || currentDate.getMonth() === 8 || currentDate.getMonth() === 10) {
 		return 30;
 	}
-	else if (currentMonth === 1) {
-		if (year % 400 == 0 || year % 100 != 0 && year % 4 == 0) {
+	else if (currentDate.getMonth() === 1) {
+		if (parseInt(currentDate.getFullYear()) % 400 == 0 || parseInt(currentDate.getFullYear()) % 100 != 0 && parseInt(currentDate.getFullYear()) % 4 == 0) {
 			return 29;
 		}
 		else {
@@ -35,15 +35,12 @@ const getLastDayofMonth = currentMonth => {
 };
 
 document.addEventListener("DOMContentLoaded", ()=> {
-	const today = new Date();
-	const November2024 = new Date("Nov 2024");
-	if (today.getMonth() == November2024.getMonth()) {
-		console.log("True");
-	}
+	const today = new Date("Oct 1 2024");
+	const currentMonth = new Date(`${getMonthText(today.getMonth())} 1 ${today.getFullYear()}`);
 
 	$("#month_year").textContent = `${getMonthText(today.getMonth())} ${today.getFullYear()}`;
 
-	const days = getLastDayofMonth(today.getMonth());
+	const days = getLastDayofMonth(today);
 
 	let i = 1;
 	const daysOfMonth = [];
@@ -52,12 +49,20 @@ document.addEventListener("DOMContentLoaded", ()=> {
 		i++;
 	}
 
+	const week1 = [];
+	const week2 = [];
+	const week3 = [];
+	const week4 = [];
+	const week5 = [];
+
+	console.log(today.getDay());
+
 	let tableHeader = "<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>"
-	let firstWeek = `<tr><td></td><td></td><td></td><td></td><td></td><td>${daysOfMonth[0]}</td><td>${daysOfMonth[1]}</td></tr>`;
-	let secondWeek = `<tr><td>${daysOfMonth[2]}</td><td>${daysOfMonth[3]}</td><td>${daysOfMonth[4]}</td><td>${daysOfMonth[5]}</td><td>${daysOfMonth[6]}</td><td>${daysOfMonth[7]}</td><td>${daysOfMonth[8]}</td></tr>`;
-	let thirdWeek = `<tr><td>${daysOfMonth[9]}</td><td>${daysOfMonth[10]}</td><td>${daysOfMonth[11]}</td><td>${daysOfMonth[12]}</td><td>${daysOfMonth[13]}</td><td>${daysOfMonth[14]}</td><td>${daysOfMonth[15]}</td></tr>`;
-	let fourthWeek = `<tr><td>${daysOfMonth[16]}</td><td>${daysOfMonth[17]}</td><td>${daysOfMonth[18]}</td><td>${daysOfMonth[19]}</td><td>${daysOfMonth[20]}</td><td>${daysOfMonth[21]}</td><td>${daysOfMonth[22]}</td></tr>`;
-	let fifthWeek = `<tr><td>${daysOfMonth[23]}</td><td>${daysOfMonth[24]}</td><td>${daysOfMonth[25]}</td><td>${daysOfMonth[26]}</td><td>${daysOfMonth[27]}</td><td>${daysOfMonth[28]}</td><td>${daysOfMonth[29]}</td></tr>`;
+	let firstWeek = `<tr><td>${week1[0]}</td><td>${week1[1]}</td><td>${week1[2]}</td><td>${week1[3]}</td><td>${week1[4]}</td><td>${week1[5]}</td><td>${week1[6]}</td></tr>`;
+	let secondWeek = `<tr><td>${week2[0]}</td><td>${week2[1]}</td><td>${week2[2]}</td><td>${week2[3]}</td><td>${week2[4]}</td><td>${week2[5]}</td><td>${week2[6]}</td></tr>`;
+	let thirdWeek = `<tr><td>${week3[0]}</td><td>${week3[1]}</td><td>${week3[2]}</td><td>${week3[3]}</td><td>${week3[4]}</td><td>${week3[5]}</td><td>${week3[6]}</td></tr>`;
+	let fourthWeek = `<tr><td>${week4[0]}</td><td>${week4[1]}</td><td>${week4[2]}</td><td>${week4[3]}</td><td>${week4[4]}</td><td>${week4[5]}</td><td>${week4[6]}</td></tr>`;
+	let fifthWeek = `<tr><td>${week5[0]}</td><td>${week5[1]}</td><td>${week5[2]}</td><td>${week5[3]}</td><td>${week5[4]}</td><td>${week5[5]}</td><td>${week5[6]}</td></tr>`;
 
 	$("#calendar").innerHTML = tableHeader + firstWeek + secondWeek + thirdWeek + fourthWeek + fifthWeek;
 });
