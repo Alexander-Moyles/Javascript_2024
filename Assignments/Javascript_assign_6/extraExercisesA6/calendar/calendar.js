@@ -35,7 +35,7 @@ const getLastDayofMonth = currentDate => {
 };
 
 document.addEventListener("DOMContentLoaded", ()=> {
-	const today = new Date("Oct 1 2024");
+	const today = new Date("Dec 2024");
 	const currentMonth = new Date(`${getMonthText(today.getMonth())} 1 ${today.getFullYear()}`);
 
 	$("#month_year").textContent = `${getMonthText(today.getMonth())} ${today.getFullYear()}`;
@@ -54,8 +54,41 @@ document.addEventListener("DOMContentLoaded", ()=> {
 	const week3 = [];
 	const week4 = [];
 	const week5 = [];
-
-	console.log(today.getDay());
+	
+	let currentDay = 0;
+	// First week
+	let j = 0;
+	while (j < currentMonth.getDay()) {
+		week1[week1.length] = "";
+		j++;
+	}
+	while (week1.length < 7) {
+		week1[week1.length] = daysOfMonth[currentDay];
+		currentDay++;
+	}
+	// Second week
+	while (week2.length < 7) {
+		week2[week2.length] = daysOfMonth[currentDay];
+		currentDay++;
+	}
+	// Third week
+	while (week3.length < 7) {
+		week3[week3.length] = daysOfMonth[currentDay];
+		currentDay++;
+	}
+	// Fourth week
+	while (week4.length < 7) {
+		week4[week4.length] = daysOfMonth[currentDay];
+		currentDay++;
+	}
+	// Fifth week
+	while (currentDay < daysOfMonth.length) {
+		week5[week5.length] = daysOfMonth[currentDay];
+		currentDay++;
+	}
+	while (week5.length < 7) {
+		week5[week5.length] = "";
+	}
 
 	let tableHeader = "<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>"
 	let firstWeek = `<tr><td>${week1[0]}</td><td>${week1[1]}</td><td>${week1[2]}</td><td>${week1[3]}</td><td>${week1[4]}</td><td>${week1[5]}</td><td>${week1[6]}</td></tr>`;
