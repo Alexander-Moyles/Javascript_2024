@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (dateParts.length != 3) {   
             messageLbl.textContent = "Please enter the date in MM/DD/YYYY format.";
             return;
-        } 
+        }
         // make sure event date string has a 4-digit year
         const year = eventDate.substring(eventDate.length - 4); 
         if (isNaN(year)) {
@@ -30,12 +30,38 @@ document.addEventListener("DOMContentLoaded", () => {
         const month = dateParts[0];
         const day = dateParts[1];
 
-        //TODO handle leap year
-
+        // make sure days are valid
         if (month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) {
-            if (day != 31) {
+            if (day > 31) {
                 messageLbl.textContent = `Month ${month} does not have ${day} days.`
+                return;
             }
+        }
+        else if (month == 4 || month == 6 || month == 9 || month == 11) {
+            if (day > 30) {
+                messageLbl.textContent = `Month ${month} does not have ${day} days.`
+                return;
+            }
+        }
+        else if (month == 2) {
+            if (year % 400 == 0 || year % 100 != 0 && year % 4 == 0) {
+                if (day > 29) {
+                    messageLbl.textContent = `Month ${month} does not have ${day} days.`
+                    return;
+                }
+            }
+            else {
+                if (day > 28) {
+                    messageLbl.textContent = `Month ${month} does not have ${day} days.`
+                    return;
+                }
+            }
+        }
+
+        // make sure months are valid
+        if (month > 12 || month < 1) {
+            messageLbl.textContent = "Please enter a valid month (1-12)"
+            return;
         }
 
         // convert event date string to Date object and check for validity

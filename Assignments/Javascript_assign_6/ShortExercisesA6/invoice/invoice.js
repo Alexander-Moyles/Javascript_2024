@@ -27,6 +27,14 @@ const calculateDiscount = (customer, subtotal) => {
     }
 };
 
+const formatDate = (date) => {
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const dateString = `${month}/${day}/${year}`;
+    return dateString;
+};
+
 document.addEventListener("DOMContentLoaded",  () => {
 
     $("#calculate").addEventListener("click", () => {
@@ -39,6 +47,8 @@ document.addEventListener("DOMContentLoaded",  () => {
             $("#subtotal").focus();
             return;
         }
+        const invoiceDate = $("#invoice_date").value;
+        let dateString = formatDate(invoiceDate); //TODO fix
 
         const discountPercent = calculateDiscount(customerType, subtotal);
         const discountAmount = subtotal * discountPercent;
