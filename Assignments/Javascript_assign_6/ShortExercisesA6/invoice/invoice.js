@@ -32,7 +32,11 @@ const formatDate = (date) => {
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
     const dateString = `${month}/${day}/${year}`;
-    return dateString;
+    if (dateString == "NaN/NaN/NaN")
+        return "";
+    else {
+        return dateString;
+    }
 };
 
 document.addEventListener("DOMContentLoaded",  () => {
@@ -47,8 +51,12 @@ document.addEventListener("DOMContentLoaded",  () => {
             $("#subtotal").focus();
             return;
         }
-        const invoiceDate = $("#invoice_date").value;
-        let dateString = formatDate(invoiceDate); //TODO fix
+        const invoiceDate = new Date($("#invoice_date").value);
+        let dateString = formatDate(invoiceDate);
+        console.log(dateString);
+        if (dateString == "") {
+            console.log("meh");
+        }
 
         const discountPercent = calculateDiscount(customerType, subtotal);
         const discountAmount = subtotal * discountPercent;
