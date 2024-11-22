@@ -32,14 +32,17 @@ const formatDate = (date) => {
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
     const dateString = `${month}/${day}/${year}`;
-    if (dateString == "NaN/NaN/NaN")
-        return "";
-    else {
-        return dateString;
-    }
+    return dateString;
+};
+
+const dueDate = (dateString) => {
+    let date = new Date(dateString);
+    date.setDate(date.getDate() + 30);
+    $("#due_date").value = formatDate(date);
 };
 
 document.addEventListener("DOMContentLoaded",  () => {
+    //$("#invoice_date").value = "";
 
     $("#calculate").addEventListener("click", () => {
         const customerType = $("#type").value;
@@ -51,12 +54,23 @@ document.addEventListener("DOMContentLoaded",  () => {
             $("#subtotal").focus();
             return;
         }
+
         const invoiceDate = new Date($("#invoice_date").value);
         let dateString = formatDate(invoiceDate);
-        console.log(dateString);
-        if (dateString == "") {
-            console.log("meh");
+        if ($("#invoice_date").value == "") {
+            const today = new Date();
+            dateString = formatDate(today);
+
+            $("#invoice_date").value = dateString;
         }
+        else if (dateString == "NaN/NaN/NaN" || invoiceDate == "Invalid Date") {
+            alert("Please enter correct date format (MM/DD/YYYY)");
+            $("#clear").click();
+            $("#invoice_date").focus();
+            return;
+        }
+        
+        dueDate(dateString);
 
         const discountPercent = calculateDiscount(customerType, subtotal);
         const discountAmount = subtotal * discountPercent;
@@ -69,7 +83,6 @@ document.addEventListener("DOMContentLoaded",  () => {
 
         // set focus on type drop-down when done  
         $("#type").focus();
-
     });
     
     $("#clear").addEventListener("click", () => {
