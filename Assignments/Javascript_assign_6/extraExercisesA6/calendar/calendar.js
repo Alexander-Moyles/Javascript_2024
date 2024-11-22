@@ -35,7 +35,7 @@ const getLastDayofMonth = currentDate => {
 };
 
 document.addEventListener("DOMContentLoaded", ()=> {
-	const today = new Date("Dec 2024");
+	const today = new Date();
 	const currentMonth = new Date(`${getMonthText(today.getMonth())} 1 ${today.getFullYear()}`);
 
 	$("#month_year").textContent = `${getMonthText(today.getMonth())} ${today.getFullYear()}`;
