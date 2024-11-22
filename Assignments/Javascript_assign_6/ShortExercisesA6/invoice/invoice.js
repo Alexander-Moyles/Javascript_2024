@@ -63,12 +63,12 @@ document.addEventListener("DOMContentLoaded",  () => {
 
             $("#invoice_date").value = dateString;
         }
-        else if (dateString == "NaN/NaN/NaN" || invoiceDate == "Invalid Date") {
-            alert("Please enter correct date format (MM/DD/YYYY)");
-            $("#clear").click();
-            $("#invoice_date").focus();
-            return;
-        }
+        // else if (dateString == "NaN/NaN/NaN" || invoiceDate == "Invalid Date") {
+        //     alert("Please enter correct date format (MM/DD/YYYY)");
+        //     $("#clear").click();
+        //     $("#invoice_date").focus();
+        //     return;
+        // }
         
         dueDate(dateString);
 
