@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tutorial</title>
+    <link type="text/css" rel="stylesheet" href="tutorial.css">
+</head>
+<body>
+  <main>
+    <h1>Tutorial - page 3</h1> 
+    <p>Here's the third thing you need to know about our site.</p>
+    
+    <input type="button" id="prev" value="Prev">
+    <input type="button" id="next" value="Finish">
+  </main>  
+  <script>
+      document.querySelector("#prev").addEventListener("click", () => location.replace("tutorial2.html"));          
+      document.querySelector("#next").addEventListener("click", () => location.replace("main.html"));
+  </script>
+</body>
+</html>
