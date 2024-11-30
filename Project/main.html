@@ -4,33 +4,75 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>TF 13 Primes Quiz</title>
-		<link rel="stylesheet" href="project.css" />
+		<link rel="icon" type="image/x-icon" href="images/13smol.ico" />
+		<!-- Bootstrap Core CSS-->
+        <link href="css/styles.css" rel="stylesheet" />
+		<!-- My Stylesheet-->
+		<link rel="stylesheet" href="css/project.css" />
 	</head>
 	<header>
-		<div>
-			<img src="images/Transformers_2014_logo.png" alt="Transformers" id="logo" />
+		<div class="container">
+			<div class="row">
+				<div class="col-3 col-lg-2">
+					<img src="images/Decepticons-Logo.png" alt="Deceptibrand" id="decepticon"/>
+				</div>
+				<div class="col-6 col-lg-8">
+					<img src="images/Transformers_2014_logo.png" alt="Transformers" id="logo" />
+				</div>
+				<div class="col-3 col-lg-2">
+					<img src="images/Autobots-Logo.png" alt="Autobrand" id="autobot"/>
+				</div>
+			</div>
 			<h1>Thirteen Primes Quiz</h1>
 		</div>
 	</header>
     <body>
 		<main>
-			<script src="project.js"></script>
+			<br>
 			<div id="image">
-				
+				<img src="" id="picture">
 			</div>
-			<div>
-				<div id="counter">
-					<p>Question</p>
-					<div><div id = "question_count">#</div> / #</div>
-				</div>
-				<div id="question">
-					<h2>QUESTION</h2>
-				</div>
-				<div id="points">
-					<p>Points</p>
-					<p>0</p>
+			<br>
+			<div class="container">
+				<div class="row">
+					<div class="col-3 col-lg-2">
+						<div id="counter">
+							<p>Question</p>
+							<div id = "question_count"></div>
+						</div>
+					</div>
+					<div id="question" class="col-6 col-lg-8">
+						<h3></h3>
+					</div>
+					<div class="col-3 col-lg-2">
+						<div id="pointbox">
+							<p>Points</p>
+							<p id="points"></p>
+						</div>
+					</div>
 				</div>
 			</div>
+			<br>
+			<div class="container">
+				<div class="row">
+				  <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 answerbox">
+					<p class="answer" id="a"></p>
+				  </div>
+				  <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 answerbox">
+					<p class="answer" id="b"></p>
+				  </div>
+				  <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 answerbox">
+					<p class="answer" id="c"></p>
+				  </div>
+				  <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-3 answerbox">
+					<p class="answer" id="d"></p>
+				  </div>
+				</div>
+			  </div>
 		</main>
+		<!-- Bootstrap Core JS-->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+		<!-- My JS-->
+		<script src="project.js"></script>
     </body>
 </html>

@@ -1,0 +1,56 @@
+html {
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+    background-image: url("../images/WellofAllSparks.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+#counter {
+    border: 3px solid purple;
+    border-radius: 12%;
+    background-color: rgb(134, 61, 134);
+}
+
+#question :first-child{
+    border: 3px solid lightblue;
+    background-color: aqua;
+    padding: 11px;
+}
+
+#pointbox {
+    border: 3px solid red;
+    border-radius: 12%;
+    background-color: rgb(253, 127, 127);
+}
+
+#logo {
+    max-height: 130px;
+    max-width: 100%;
+}
+
+.answerbox * {
+    border: 3px solid green;
+    border-radius: 13.5%;
+    background-color: greenyellow;
+    font-weight: bolder;
+}
+
+#picture {
+    max-height: 40vh;
+}
+
+#pointbox *, #counter * {
+    font-weight: bold;
+    text-align: center;
+    margin: 3px;
+}
+
+#autobot, #decepticon {
+    max-height: 15vh;
+}
