@@ -34,10 +34,15 @@ body {
     max-width: 100%;
 }
 
-.answerbox * {
-    border: 3px solid green;
+.answerbox{
+    background-color: white;
+    border: 3px solid lightblue;
     border-radius: 13.5%;
-    background-color: greenyellow;
+}
+
+.answer {
+    background-color: white;
+    border: none;
     font-weight: bolder;
 }
 
@@ -53,4 +58,25 @@ body {
 
 #autobot, #decepticon {
     max-height: 15vh;
+}
+
+.wrong {
+    background-color: red;
+    border-color: black;
+}
+
+.correct {
+    background-color: greenyellow;
+    border-color: green;
+}
+
+#Hasbro, #TakaraTomy {
+    color: blue;
+}
+
+#footer {
+    color: white;
+    position: absolute;
+    bottom:0px;
+    margin-left: 1vw;
 }
