@@ -38,16 +38,26 @@ const wrongHelper = () => {
             $(`#${answerlist[i].id}`).addEventListener("click", () => {
                 answerlist[i].classList.toggle("wrong");
                 answerlist[i].parentElement.classList.toggle("wrong");
-            })
+                correctHelper();
+            });
+        } //TODO: Disable buttons after answer is chosen
+        else {
+            $(`#${answerlist[i].id}`).addEventListener("click", () => {
+            answerlist[i].classList.toggle("correct");
+            answerlist[i].parentElement.classList.toggle("correct");
+            points++;
+            setStats();
+            });
         }
     }
-    correctHelper();
 };
 
 const correctHelper = () => {
     for(let i = 0; i < 4; i++) {
-        answerlist[i].classList.toggle("correct");
-        answerlist[i].parentElement.classList.toggle("correct");
+        if (answerlist[i].id == answers[currentQuestion - 1][4]) {
+            answerlist[i].classList.toggle("correct");
+            answerlist[i].parentElement.classList.toggle("correct");
+        }
     }
 };
 
