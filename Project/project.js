@@ -27,6 +27,9 @@ const nextQuestion = () => {
     $("#b").textContent = answers[currentQuestion - 1][1];
     $("#c").textContent = answers[currentQuestion - 1][2];
     $("#d").textContent = answers[currentQuestion - 1][3];
+    if (answers[currentQuestion - 1][5] != null) {
+        //TODO: image setting code
+    }
 };
 
 const wrongHelper = () => {
@@ -38,9 +41,18 @@ const wrongHelper = () => {
             })
         }
     }
-}
+    correctHelper();
+};
+
+const correctHelper = () => {
+    for(let i = 0; i < 4; i++) {
+        answerlist[i].classList.toggle("correct");
+        answerlist[i].parentElement.classList.toggle("correct");
+    }
+};
 
 document.addEventListener("DOMContentLoaded", () => {
+    //TODO: preload images
     setStats();
     nextQuestion();
 
@@ -48,10 +60,5 @@ document.addEventListener("DOMContentLoaded", () => {
         wrongHelper();
     }
 
-    /*
-    $(`#${answerlist[i].id}`).addEventListener("click", () => {
-                answerlist[i].classList.toggle("correct");
-                answerlist[i].parentElement.classList.toggle("correct");
-            })
-    */
+    
 })
