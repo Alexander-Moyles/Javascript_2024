@@ -41,9 +41,17 @@ body {
 }
 
 .answer {
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0);
     border: none;
     font-weight: bolder;
+    flex: 0 0 auto;
+    width: 99%;
+}
+
+#image {
+    flex: 0 0 auto;
+    height: auto;
+    width: auto;
 }
 
 #picture {
@@ -79,4 +87,8 @@ body {
     position: absolute;
     bottom:0px;
     margin-left: 1vw;
+}
+
+ul { 
+    display: none; 
 }
