@@ -16,12 +16,13 @@
         <input type="button" id="back" value="Back">
     </main>
     <script>
-        // display query string
         document.querySelector("#back").addEventListener("click", () => {
             history.back();
         });
 
-        document.querySelector("#profile").textContent = "";
+        // display query string
+        let data = location.search.substring(1);
+        document.querySelector("#profile").textContent = decodeURIComponent(data);
     </script>
 </body>
 </html>
