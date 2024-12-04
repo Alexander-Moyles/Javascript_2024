@@ -3,10 +3,13 @@
 const $ = (selector) => document.querySelector(selector);
 
 document.addEventListener("DOMContentLoaded",  () => {
-	// display data from session storage
+	$("#email").textContent = sessionStorage.getItem("email");
+	$("#phone").textContent = sessionStorage.getItem("phone");
+	$("#zip").textContent = sessionStorage.getItem("zip");
+	$("#dob").textContent = sessionStorage.getItem("dob");
 	
-	$("back").addEventListener("click", () => {
-		
+	$("#back").addEventListener("click", () => {
+		history.back();
 	}); // end of click()
 	
 }); // end of ready()
