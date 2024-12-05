@@ -1,7 +1,7 @@
 "use strict"
 const $ = (selector) => document.querySelector(selector);
 
-// Only ten questions will actually be used, the extras are there for some added variety
+// Only ten questions will actually be used, the extras are here for some added variety
 const questionList = [
     ["Which of the 13 Primes first appeared in the Generation 2 Comic?",
         "Prima", "The Fallen", "Liege Maximo", "Solus Prime", "c"],
@@ -41,9 +41,8 @@ const shuffleQuestions = (array) => {
     return array;
 };
 const questions = shuffleQuestions(questionList);
-console.log(questions);
 
-let currentQuestion = 0;
+let currentQuestion = 1;
 let totalQuestions = questions.length;
 let points = 0;
 
@@ -51,14 +50,14 @@ const answerlist = document.querySelectorAll("button");
 
 const setStats = () => {
     $("#points").textContent = points;
-    $("#question_count").textContent = `${currentQuestion} / ${totalQuestions}`;
+    $("#question_count").textContent = `${currentQuestion} / 10`;
 };
 
 const correctHelper = () => {
     for(let i = 0; i < 4; i++) {
         if (answerlist[i].id == questions[currentQuestion - 1][5]) {
-            answerlist[i].classList.toggle("correct");
-            answerlist[i].parentElement.classList.toggle("correct");
+            answerlist[i].classList.toggle("correct", true);
+            answerlist[i].parentElement.classList.toggle("correct", true);
         }
     }
 };
@@ -68,6 +67,12 @@ const buttonDisabler = () => {
         answerlist[i].disabled = true;
     }
 };
+
+const buttonEnabler = () => {
+    for(let i = 0; i < 4; i++) {
+        answerlist[i].disabled = false;
+    }
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const images = document.querySelectorAll("a");
@@ -81,46 +86,102 @@ document.addEventListener("DOMContentLoaded", () => {
         imageCache[imageCache.length] = img;
     };
 
-    const nextQuestion = () => {
-        currentQuestion += 1;
+    const nextQuestion = (result) => {
+        currentQuestion++;
+        if (currentQuestion < 11) {
+            let timer = 5;
+            const countDown = () => {
+                $("#question").firstChild.nextElementSibling.textContent = `${result} Next Question in ${timer}...`;
+                timer--;
+            };
+            const zero = () => {
+                for(let i = 0; i < 4; i++) {
+                    answerlist[i].classList.toggle("wrong", false);
+                    answerlist[i].parentElement.classList.toggle("wrong", false);
+                    answerlist[i].classList.toggle("correct", false);
+                    answerlist[i].parentElement.classList.toggle("correct", false);
+                    nextQuestionHelper();
+                    setStats();
+                }
+            };
+            
+            countDown();
+            setTimeout(countDown, 1000);
+            setTimeout(countDown, 2000);
+            setTimeout(countDown, 3000);
+            setTimeout(countDown, 4000);
+            setTimeout(zero, 5000);
+        }
+        else {
+            clearInterval(answerChecker);
+            let timer = 3;
+            const countDown = () => {
+                $("#question").firstChild.nextElementSibling.textContent = `${result} Quiz Ending in ${timer}...`;
+                timer--;
+            };
+            setTimeout(countDown, 1000);
+            setTimeout(countDown, 2000);
+            setTimeout(countDown, 3000);
+            quizEnd();
+        }
+    };
 
+    const nextQuestionHelper = () => {
         $("#question").firstChild.nextElementSibling.textContent = questions[currentQuestion - 1][0];
         $("#a").textContent = questions[currentQuestion - 1][1];
         $("#b").textContent = questions[currentQuestion - 1][2];
         $("#c").textContent = questions[currentQuestion - 1][3];
         $("#d").textContent = questions[currentQuestion - 1][4];
-        if (questions[currentQuestion - 1][6] != null) {
+        if (!isNaN(questions[currentQuestion - 1][6])) {
             $("#picture").src = `${imageCache[questions[currentQuestion - 1][6]].src}`;
             $("#picture").alt = `${imageCache[questions[currentQuestion - 1][6]].alt}`;
         }
         else {
-            $("#picture").src = "";
+            $("#picture").src = "images/none.png";
+            setStats();
         }
+        buttonEnabler();
     };
 
-    const wrongHelper = () => {
-        for(let i = 0; i < 4; i++) {
-            if (answerlist[i].id != questions[currentQuestion - 1][5]) {
-                $(`#${answerlist[i].id}`).addEventListener("click", () => {
-                    answerlist[i].classList.toggle("wrong");
-                    answerlist[i].parentElement.classList.toggle("wrong");
-                    correctHelper();
-                    buttonDisabler();
-                    setStats();
-                });
+    let answer = "";
+
+    $("#a").addEventListener("click", () => {
+        answer = "a";
+    });
+    $("#b").addEventListener("click", () => {
+        answer = "b";
+    });
+    $("#c").addEventListener("click", () => {
+        answer = "c";
+    });
+    $("#d").addEventListener("click", () => {
+        answer = "d";
+    });
+
+    const answerChecker = setInterval(() => {
+        if (answer != "") {
+            if (answer != questions[currentQuestion - 1][5]) {
+                $(`#${answer}`).classList.toggle("wrong", true);
+                $(`#${answer}`).parentElement.classList.toggle("wrong", true);
+                correctHelper();
+                nextQuestion("Wrong!");
+                answer = "";
             }
             else {
-                $(`#${answerlist[i].id}`).addEventListener("click", () => {
-                answerlist[i].classList.toggle("correct");
-                answerlist[i].parentElement.classList.toggle("correct");
                 points++;
-                buttonDisabler();
                 setStats();
-                });
+                correctHelper();
+                nextQuestion("Correct!");
+                answer = "";
             }
         }
-    };
+    }, 90);
 
+    nextQuestionHelper();
     setStats();
-    nextQuestion();
-})
+
+    const quizEnd = () => {
+        sessionStorage.setItem("score", points);
+        setTimeout(location.replace("quiz_end.html"), 3000);
+    };
+});

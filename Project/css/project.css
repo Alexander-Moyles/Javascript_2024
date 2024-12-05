@@ -92,3 +92,34 @@ body {
 ul { 
     display: none; 
 }
+
+#final_score {
+    background-color: teal;
+    border: white solid 5px;
+    color: white;
+    font-size: larger;
+}
+
+.high_score {
+    font-weight: bold;
+    border-radius: 25%;
+}
+
+.good_score {
+    background-color: red;
+    border-radius: 25%;
+    color: white;
+    font-weight: bold;
+}
+
+.low_score {
+    background-color: rgb(134, 61, 134);
+    border-radius: 25%;
+    color: white;
+    font-weight: bold;
+}
+
+.no_score {
+    font-weight: bold;
+    border-radius: 25%;
+}
