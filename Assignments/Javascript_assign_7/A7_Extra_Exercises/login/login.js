@@ -1,13 +1,13 @@
 "use strict";
 
 const getCookieByName = name => {
-    const cookies = document.cookies;
-    let cookie = cookies.indexOf(name + "=");
-    if (cookie === -1) {
+    const cookies = document.cookie;
+    let start = cookies.indexOf(name + "=");
+    if (start === -1) {
         return "";
     }
     else {
-        cookie += (name.length + 1);
+        start += (name.length + 1);
         let end = cookies.indexOf(";", start);
         if (end === -1) {
             end = cookies.length;
@@ -19,7 +19,12 @@ const getCookieByName = name => {
 };
 
 const setCookie = (name, value, days) => {
-
+    let cookie = name + "=" + encodeURIComponent(value);
+    if (days) {
+        cookie += "; max-age=" + days * 24 * 60 * 60;
+    }
+    cookie += "; path=/";
+    document.cookie = cookie;
 };
 
 const deleteCookie = name => {
@@ -27,5 +32,5 @@ const deleteCookie = name => {
 };
 
 const goToPage = url => {
-    location.href = url;
+    location = url;
 };

@@ -6,22 +6,22 @@ document.addEventListener("DOMContentLoaded", () => {
     $("#final_score").textContent = `You scored ${score} points out of 10`;
     if (score > 9) {
         $("#picture").src = "images/Omega_Prime_BoxArt.png";
-        $("#caption").textContent = `""`;
-        $("#message").textContent = ``;
+        $("#caption").textContent = `! - OMEGA LEVEL VICTORY - !`;
+        $("#message").textContent = `You got every question right!! Did you read the Covenant of Primus before this?`;
         $("#caption").classList.toggle("high_score", true);
         $("#message").classList.toggle("high_score", true);
     }
     else if (score > 5) {
         $("#picture").src = "images/Optimus_thumbs_up.png";
         $("#caption").textContent = `"Good work, Autobot!"`;
-        $("#message").textContent = ``;
+        $("#message").textContent = `You correctly answered the majority of the questions, good job!`;
         $("#caption").classList.toggle("good_score", true);
         $("#message").classList.toggle("good_score", true);
     }
     else if (score > 1) {
         $("#picture").src = "images/Megatron_yelling.png";
-        $("#caption").textContent = `"This is YOU'RE fault Starscream!"`;
-        $("#message").textContent = ``;
+        $("#caption").textContent = `"This is YOUR fault Starscream!"`;
+        $("#message").textContent = `You didn't get every question right, but they weren't all wrong either! Consider trying again with what you know now!`;
         $("#caption").classList.toggle("low_score", true);
         $("#message").classList.toggle("low_score", true);
     }
@@ -30,4 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
         $("#caption").textContent = `""`;
         $("#message").textContent = ``;
     }
+
+    $("#retry").addEventListener("click", () => {
+        location.replace("index.html");
+    })
 });
