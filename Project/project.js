@@ -53,24 +53,25 @@ document.addEventListener("DOMContentLoaded", () => {
         $("#question_count").textContent = `${currentQuestion} / 10`;
     };
 
+    // Sets the correct answer to be green, seperate function so that wrong answers show what the correct one was
     const correctHelper = () => {
-        for(let i = 0; i < 4; i++) {
-            if (answerlist[i].id == questions[currentQuestion - 1][5]) {
-                answerlist[i].classList.toggle("correct", true);
-                answerlist[i].parentElement.classList.toggle("correct", true);
+        for(let answer of answerlist) {
+            if (answer.id == questions[currentQuestion - 1][5]) {
+                answer.classList.toggle("correct", true);
+                answer.parentElement.classList.toggle("correct", true);
             }
         }
     };
 
     const buttonDisabler = () => {
-        for(let i = 0; i < 4; i++) {
-            answerlist[i].disabled = true;
+        for(let answer of answerlist) {
+            answer.disabled = true;
         }
     };
 
     const buttonEnabler = () => {
-        for(let i = 0; i < 4; i++) {
-            answerlist[i].disabled = false;
+        for(let answer of answerlist) {
+            answer.disabled = false;
         }
     };
 
@@ -99,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     answerlist[i].parentElement.classList.toggle("wrong", false);
                     answerlist[i].classList.toggle("correct", false);
                     answerlist[i].parentElement.classList.toggle("correct", false);
-                    nextQuestionHelper();
+                    setQuestionText();
                     setStats();
                 }
             };
@@ -125,7 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    const nextQuestionHelper = () => {
+    // Renamed from 'nextQuestionHelper' for clarity of purpose
+    const setQuestionText = () => {
         $("#question").firstChild.nextElementSibling.textContent = questions[currentQuestion - 1][0];
         $("#a").textContent = questions[currentQuestion - 1][1];
         $("#b").textContent = questions[currentQuestion - 1][2];
@@ -142,45 +144,41 @@ document.addEventListener("DOMContentLoaded", () => {
         buttonEnabler();
     };
 
-    let answer = "";
-
     $("#a").addEventListener("click", () => {
-        answer = "a";
         buttonDisabler();
+        answerChecker("a");
     });
     $("#b").addEventListener("click", () => {
-        answer = "b";
         buttonDisabler();
+        answerChecker("b");
     });
     $("#c").addEventListener("click", () => {
-        answer = "c";
         buttonDisabler();
+        answerChecker("c");
     });
     $("#d").addEventListener("click", () => {
-        answer = "d";
         buttonDisabler();
+        answerChecker("d");
     });
 
-    const answerChecker = setInterval(() => {
-        if (answer != "") {
-            if (answer != questions[currentQuestion - 1][5]) {
-                $(`#${answer}`).classList.toggle("wrong", true);
-                $(`#${answer}`).parentElement.classList.toggle("wrong", true);
-                correctHelper();
-                nextQuestion("Wrong!");
-                answer = "";
-            }
-            else {
-                points++;
-                setStats();
-                correctHelper();
-                nextQuestion("Correct!");
-                answer = "";
-            }
+    const answerChecker = (answer) => {
+        if (answer != questions[currentQuestion - 1][5]) {
+            $(`#${answer}`).classList.toggle("wrong", true);
+            $(`#${answer}`).parentElement.classList.toggle("wrong", true);
+            correctHelper();
+            nextQuestion("Wrong!");
+            answer = "";
         }
-    }, 90);
+        else {
+            points++;
+            setStats();
+            correctHelper();
+            nextQuestion("Correct!");
+            answer = "";
+        }
+    }
 
-    nextQuestionHelper();
+    setQuestionText();
     setStats();
 
     const quizEnd = () => {
