@@ -26,9 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
         $("#message").classList.toggle("low_score", true);
     }
     else {
-        $("#picture").src = "";
-        $("#caption").textContent = `""`;
-        $("#message").textContent = ``;
+        $("#picture").src = "images/Thefallen2.jpg";
+        $("#caption").textContent = `"It's been a long time."`;
+        $("#message").textContent = `You may have done poorly, but learning from faliure is how you rise again.`;
+        $("#caption").classList.toggle("no_score", true);
+        $("#message").classList.toggle("no_score", true);
     }
 
     $("#retry").addEventListener("click", () => {

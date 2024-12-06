@@ -123,7 +123,8 @@ ul {
     font-weight: bold;
     border-radius: 25%;
     background-color: black;
-    color: orangered;
+    color: orange;
+    font-style: italic;
 }
 
 #retry {
