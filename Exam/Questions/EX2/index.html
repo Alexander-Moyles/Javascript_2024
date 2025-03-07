@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Airplane Tickets</title>
+	<link rel="stylesheet" href="main.css">
+</head>
+	
+<body>
+	<h1>Airplane Tickets</h1>
+	<form action="response.html" method="get"
+    	name="reservation_form" id="reservation_form">
+		<fieldset>
+        	<legend>General Information</legend>
+        	<label for="arrival_date">Flight date:</label>
+        	<input type="text" name="arrival_date" id="arrival_date">
+        	<span>*</span><br>
+        	<label for="adults">Adults:</label>
+        	<input type="text" name="adults" id="adults">
+			<span>*</span><br>
+        	<label for="children">Children:</label>
+        	<input type="text" name="children" id="children">
+			<span>*</span><br>      	
+		</fieldset>
+		<fieldset>
+        	<legend>Expense</legend>
+			<label for="price">Price:</label>
+			<input disabled type="text" name="price" id="price"><br><br>
+            <label for="code">Discount Code:</label>
+			<input type="text" name="code" id="code">
+		</fieldset>		
+		<fieldset>
+    		<legend>Contact Information</legend>
+    		<label for="name">Name:</label>
+			<input type="text" name="name" id="name">
+			<span>*</span><br>
+        	<label for="email">Email:</label>
+        	<input type="text" name="email" id="email">
+        	<span>*</span><br>
+		</fieldset>
+		<input type="button" id="calc" value="Calculate">
+		<input type="button" id="submitButton" value="Submit Request"><br>
+	</form>
+	<script src="reservation.js"></script>
+</body>
+</html>
